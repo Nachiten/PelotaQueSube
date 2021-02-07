@@ -38,8 +38,19 @@ public class MovimientoBola : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W))
         {
+
+            float posicionY = this.gameObject.GetComponent<Transform>().position.y;
+
             // Empujo la bola para arriba
-            this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, FuerzaY * Time.deltaTime));
+            //this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, FuerzaY * Time.deltaTime));
+            this.gameObject.GetComponent<Rigidbody2D>().MovePosition(new Vector2(0, FuerzaY * Time.deltaTime + posicionY));
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Obstaculo") {
+            perdioJuego();
         }
     }
 }
