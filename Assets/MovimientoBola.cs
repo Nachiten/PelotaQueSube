@@ -5,25 +5,20 @@ using UnityEngine;
 
 public class MovimientoBola : MonoBehaviour
 {
+    //public float FuerzaGravedad = 1;
+    //public float FuerzaY = 500;
+    //public GameObject Camara;
 
-    public float FuerzaGravedad = 1;
-    public float FuerzaY = 500;
-    public GameObject Camara;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float speed = 10f;
 
     // Update is called once per frame
     void Update()
     {
-        this.gameObject.GetComponent<Rigidbody2D>().gravityScale = FuerzaGravedad;
+        if (transform.position.y <= -2.5f)
+            transform.position = new Vector2(0, -2.5f);
 
-        if (this.gameObject.GetComponent<Transform>().position.y < Camara.GetComponent<Transform>().position.y - 5.8f) {
-            perdioJuego();
-        }
+        if (Input.GetMouseButtonDown(0))
+            this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, speed);
     }
 
     private void perdioJuego()
@@ -33,19 +28,19 @@ public class MovimientoBola : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    // Utilizar para fuerzas
-    void FixedUpdate()
-    {
-        if (Input.GetKey(KeyCode.W))
-        {
+    //// Utilizar para fuerzas
+    //void FixedUpdate()
+    //{
+    //    if (Input.GetKey(KeyCode.W))
+    //    {
 
-            float posicionY = this.gameObject.GetComponent<Transform>().position.y;
+    //        float posicionY = this.gameObject.GetComponent<Transform>().position.y;
 
-            // Empujo la bola para arriba
-            //this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, FuerzaY * Time.deltaTime));
-            this.gameObject.GetComponent<Rigidbody2D>().MovePosition(new Vector2(0, FuerzaY * Time.deltaTime + posicionY));
-        }
-    }
+    //        // Empujo la bola para arriba
+    //        //this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, FuerzaY * Time.deltaTime));
+    //        this.gameObject.GetComponent<Rigidbody2D>().MovePosition(new Vector2(0, FuerzaY * Time.deltaTime + posicionY));
+    //    }
+    //}
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
