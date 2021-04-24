@@ -2,13 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovimientoObstaculo : MonoBehaviour
+public class MovimientoHorizontalObstaculo : MonoBehaviour
 {
-    float velocidadObstaculo = 0; // 3
+    float velocidadObstaculo = 3; // 3
     int signo = 1;
+    public bool perdio = false;
 
     void FixedUpdate()
     {
+        if (perdio)
+            return;
+
         Vector2 posicionObstaculo = GetComponent<Transform>().position;
 
         //Debug.Log("Posicion ObstaculoY: " + posicionObstaculo.y);

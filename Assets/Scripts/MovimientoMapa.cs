@@ -16,13 +16,22 @@ public class MovimientoMapa : MonoBehaviour
         this.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
     }
 
+    Vector2 posicionInicial;
+
+    void Start()
+    {
+        posicionInicial = transform.position;
+    }
+
     void Update()
     {
         if (perdio)
             return;
 
-        if (transform.position.y >= -2.5f)
-            transform.position = new Vector2(0, -2.5f);
+        Vector2 posicionActual = transform.position;
+
+        if (posicionActual.y >= posicionInicial.y)
+            transform.position = new Vector2(posicionActual.x, posicionInicial.y);
 
         if (Input.GetMouseButtonDown(0))
             this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, speed);
