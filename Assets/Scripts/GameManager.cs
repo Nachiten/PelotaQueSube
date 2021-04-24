@@ -5,23 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-
     public bool perdio = false;
 
-    // Start is called before the first frame update
-    void Start()
+    public void perderJuego() 
     {
-        
+        // Variable por ahora inutil
+        perdio = true;
+        GameObject.Find("Objetos Mapa").GetComponent<MovimientoMapa>().perderJuego();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void recargarJuego() 
     {
-        
-    }
-
-    public void recargarJuego() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
 }
