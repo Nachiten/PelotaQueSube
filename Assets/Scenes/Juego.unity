@@ -552,9 +552,8 @@ GameObject:
   m_Component:
   - component: {fileID: 432401275}
   - component: {fileID: 432401274}
-  - component: {fileID: 432401273}
   - component: {fileID: 432401272}
-  - component: {fileID: 432401276}
+  - component: {fileID: 432401273}
   m_Layer: 0
   m_Name: Bola
   m_TagString: Untagged
@@ -574,8 +573,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e1cadf297658424ca0eb15f26b56b0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &432401273
-BoxCollider2D:
+--- !u!58 &432401273
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -587,19 +586,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 8.75, y: 8.69}
-    newSize: {x: 8.75, y: 8.69}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: -0.01291275, y: 0.010538101}
   serializedVersion: 2
-  m_Size: {x: 8.75, y: 8.69}
-  m_EdgeRadius: 0
+  m_Radius: 4.213285
 --- !u!212 &432401274
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -665,18 +654,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &432401276
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 432401271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 009c9f14984d58843b722013df07301c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &473733291
 GameObject:
   m_ObjectHideFlags: 0
@@ -1319,7 +1296,7 @@ PrefabInstance:
     - target: {fileID: 4932579780195079298, guid: c94c09486ed3e154ba407e2b1d757f70,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9
+      value: 9.2
       objectReference: {fileID: 0}
     - target: {fileID: 4932579780195079298, guid: c94c09486ed3e154ba407e2b1d757f70,
         type: 3}
@@ -1919,7 +1896,7 @@ PrefabInstance:
     - target: {fileID: 4932579780195079298, guid: c94c09486ed3e154ba407e2b1d757f70,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9
+      value: -9.2
       objectReference: {fileID: 0}
     - target: {fileID: 4932579780195079298, guid: c94c09486ed3e154ba407e2b1d757f70,
         type: 3}
