@@ -4,7 +4,7 @@ public class MovimientoCamara : MonoBehaviour
 {
     public GameObject bola;
 
-    private float yMaxBola = 0;
+    float yMaxBola = 0;
 
     void Update()
     {

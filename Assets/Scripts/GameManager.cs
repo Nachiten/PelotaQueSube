@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 
     List<GameObject> obstaculos;
 
-    float timePassed = 0, velocidad = 10;
+    float timePassed = 0, velocidad = 5;
 
     public TMP_Text textoReloj, textoSpeed;
 
@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
             obstaculos.Add(miObstaculo);
             i++;
         }
+
+        textoSpeed.text = velocidad.ToString();
     }
 
     int contador = 1;
@@ -46,8 +48,8 @@ public class GameManager : MonoBehaviour
 
         textoReloj.text = minutes + ":" + seconds + ":" + miliseconds;
 
-        int incrementoVelocidad = 2;
-        int periodoIncremento = 4;
+        float incrementoVelocidad = 1.5f;
+        int periodoIncremento = 6;
 
         if (int.Parse(seconds) == periodoIncremento * contador) 
         {

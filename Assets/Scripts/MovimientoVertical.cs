@@ -3,9 +3,9 @@ using TMPro;
 
 public class MovimientoVertical : MonoBehaviour
 {
-    float speedY = -10f;
+    float speedY = 5f;
 
-    static bool perdio = false;
+    bool perdio = false;
     Vector2 posicionInicial;
 
     public float limiteMinimo = -34f;
@@ -46,12 +46,12 @@ public class MovimientoVertical : MonoBehaviour
         }
 
         // Configurar Velocidad
-        this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, speedY);
+        this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -speedY);
 
     }
 
-    public void aumentarVelocidad(int incremento) 
+    public void aumentarVelocidad(float incremento) 
     {
-        speedY -= incremento;
+        speedY += incremento;
     }
 }
