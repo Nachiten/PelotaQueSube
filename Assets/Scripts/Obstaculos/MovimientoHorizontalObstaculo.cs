@@ -8,6 +8,13 @@ public class MovimientoHorizontalObstaculo : MonoBehaviour
 
     bool perdio = false;
 
+    void Start()
+    {
+        float posicionX = Random.Range(-posicionLimite, posicionLimite);
+
+        transform.position = new Vector2(posicionX, transform.position.y);
+    }
+
     void Update()
     {
         if (perdio)
