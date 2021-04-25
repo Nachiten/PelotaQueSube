@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class BolaManager : MonoBehaviour
 {
+    public bool colisionEnabled = true;
+
     bool perdio = false;
 
     void perdioJuego()
@@ -14,12 +16,19 @@ public class BolaManager : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("[ColisionBola] OnColisionEnter2D");
+        if (!colisionEnabled)
+            return;
 
-        Debug.Log(collision.gameObject.name);
+        Debug.Log("[ColisionBola] Objeto colisionado: " + collision.gameObject.name);
 
         if (collision.gameObject.tag == "Obstaculo")
             perdioJuego();
+    }
+
+    void Start()
+    {
+        if (!colisionEnabled)
+            Debug.LogError("Colisiones Desactivadas!!!");
     }
 
     void Update()
@@ -30,12 +39,8 @@ public class BolaManager : MonoBehaviour
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
-        // Si el click izquierdo está presionado
-        //if (Input.GetMouseButton(0))
-        //{
-            Vector2 posicionActual = transform.position;
+        Vector2 posicionActual = transform.position;
 
-            transform.position = new Vector2(mousePos2D.x, posicionActual.y);
-        //}
+        transform.position = new Vector2(mousePos2D.x, posicionActual.y);
     }
 }

@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
         // Encuentro todos los obstaculos y los agrego a la lista
         while ( ( miObstaculo = GameObject.Find("Obstaculo " + i) ) != null) 
         {
+            miObstaculo.GetComponent<MovimientoVertical>().sumaAlResetear = 60f;
             obstaculos.Add(miObstaculo);
             i++;
         }
@@ -80,7 +81,20 @@ public class GameManager : MonoBehaviour
         foreach (GameObject unObstaculo in obstaculos)
         {
             unObstaculo.GetComponent<MovimientoVertical>().perderJuego();
-            unObstaculo.GetComponent<MovimientoHorizontalObstaculo>().perdio = true;
+            unObstaculo.GetComponent<MovimientoHorizontalObstaculo>().perderJuego();
+
+            RotacionObstaculo rotacion;
+
+            if (( rotacion = unObstaculo.GetComponent<RotacionObstaculo>() ) != null) {
+                rotacion.perderJuego();
+            }
+
+            TamañoObstaculo tamaño;
+
+            if ((tamaño = unObstaculo.GetComponent<TamañoObstaculo>()) != null)
+            {
+                tamaño.perderJuego();
+            }
         }
     }
 

@@ -6,7 +6,7 @@ public class MovimientoHorizontalObstaculo : MonoBehaviour
 
     int signo = 1;
 
-    public bool perdio = false;
+    bool perdio = false;
 
     void Update()
     {
@@ -30,8 +30,8 @@ public class MovimientoHorizontalObstaculo : MonoBehaviour
         this.transform.position = new Vector2(velocidadObstaculo * signo * Time.deltaTime + posicionObstaculo.x, posicionObstaculo.y);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void perderJuego() 
     {
-        Debug.Log("[MovimientoObstaculo] OnColisionEnter2D");
+        perdio = true;
     }
 }
