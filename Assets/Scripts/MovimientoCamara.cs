@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MovimientoCamara : MonoBehaviour
 {
     public GameObject bola;
+
     private float yMaxBola = 0;
 
     void Update()

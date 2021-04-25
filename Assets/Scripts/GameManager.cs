@@ -1,12 +1,17 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public bool perdio = false;
+
     List<GameObject> obstaculos;
+
+    float timePassed = 0, velocidad = 10;
+
+    public TMP_Text textoReloj, textoSpeed;
 
     void Start() 
     {
@@ -15,32 +20,71 @@ public class GameManager : MonoBehaviour
         GameObject miObstaculo;
         int i = 0;
 
-        while ( (miObstaculo = GameObject.Find("Obstaculo " + i)) != null) {
+        // Encuentro todos los obstaculos y los agrego a la lista
+        while ( ( miObstaculo = GameObject.Find("Obstaculo " + i) ) != null) 
+        {
             obstaculos.Add(miObstaculo);
             i++;
         }
+    }
 
-        foreach (GameObject unObstaculo in obstaculos) 
+    int contador = 1;
+
+    private void Update()
+    {
+        if (perdio)
+            return;
+
+        timePassed += Time.deltaTime;
+
+        //float seconds = Mathf.Floor(timePassed % 60);
+        //Debug.Log("Tiempo: " + seconds.ToString("F2"));
+
+        string minutes = Mathf.Floor((timePassed % 3600) / 60).ToString("00");
+        string seconds = Mathf.Floor(timePassed % 60).ToString("00");
+        string miliseconds = Mathf.Floor(timePassed % 6 * 10 % 10).ToString("0");
+
+        textoReloj.text = minutes + ":" + seconds + ":" + miliseconds;
+
+        int incrementoVelocidad = 2;
+        int periodoIncremento = 4;
+
+        if (int.Parse(seconds) == periodoIncremento * contador) 
         {
-            Debug.Log(unObstaculo);
+            contador++;
+
+            // Aumento la velocidad del fondo
+            GameObject.Find("Fondo").GetComponent<MovimientoVertical>().aumentarVelocidad(incrementoVelocidad);
+
+            // Aumento la velocidad de todos los obstaculos
+            foreach (GameObject unObstaculo in obstaculos)
+            {
+                unObstaculo.GetComponent<MovimientoVertical>().aumentarVelocidad(incrementoVelocidad);
+            }
+
+            velocidad += incrementoVelocidad;
+            textoSpeed.text = velocidad.ToString();
         }
     }
 
     public void perderJuego() 
     {
-        // Variable por ahora inutil
         perdio = true;
-        GameObject.Find("Objetos Mapa").GetComponent<MovimientoMapa>().perderJuego();
 
-        foreach (GameObject unObstaculo in obstaculos) 
+        // Decirle al fondo que perdiste
+        GameObject.Find("Fondo").GetComponent<MovimientoVertical>().perderJuego();
+
+        // Recorro todos los obstaculos para decirles q perdi
+        foreach (GameObject unObstaculo in obstaculos)
         {
-            unObstaculo.GetComponent<MovimientoMapa>().perderJuego();
+            unObstaculo.GetComponent<MovimientoVertical>().perderJuego();
             unObstaculo.GetComponent<MovimientoHorizontalObstaculo>().perdio = true;
         }
     }
 
     public void recargarJuego() 
     {
+        // Recargar la escena
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

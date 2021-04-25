@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ColisionBola : MonoBehaviour
 {
-    private void perdioJuego()
+    void perdioJuego()
     {
         Debug.Log("Perdio Juego!");
         GameObject.Find("GameManager").GetComponent<GameManager>().perderJuego();
@@ -12,7 +10,7 @@ public class ColisionBola : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("[ColisionBola] OnColisionEnter2D");
 
