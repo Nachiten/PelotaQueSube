@@ -36,10 +36,11 @@ public class MovimientoVertical : MonoBehaviour
         // Configurar Velocidad
         GetComponent<Rigidbody2D>().velocity = new Vector2(0, -speedY);
 
-        if (transform.position.y <= limiteDesaparicion && !reseteaPosicion)
+        if (transform.position.y <= limiteDesaparicion && !reseteaPosicion) 
+        {
             GameObject.Find("ObjectSpawner").GetComponent<ObjectSpawner>().ocultarObstaculo(this.gameObject);
-        
-
+            GetComponent<IAplicarColor>().aplicarColorRandom();
+        }
     }
 
     void OnEnable()

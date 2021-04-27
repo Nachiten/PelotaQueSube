@@ -7,13 +7,13 @@ public class GameManager : MonoBehaviour
 {
     public bool perdio = false;
 
-    float timePassed = 0f;
-        
     public float speedY = 25f;
 
-    int contador = 1;
-
     public TMP_Text textoReloj, textoSpeed;
+
+    float timePassed = 0f, timeSpeed = 1;
+
+    int contador = 1;
 
     void Start() 
     {
@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
         if (perdio)
             return;
 
-        timePassed += Time.deltaTime;
+        timePassed += Time.deltaTime * timeSpeed;
 
         string minutes = Mathf.Floor((timePassed % 3600) / 60).ToString("00");
         string seconds = Mathf.Floor(timePassed % 60).ToString("00");
@@ -36,8 +36,17 @@ public class GameManager : MonoBehaviour
         float incrementoVelocidad = 1.5f;
         int periodoIncremento = 6;
 
-        if (int.Parse(seconds) == periodoIncremento * contador) 
+        int segundosPasados = int.Parse(seconds);
+
+        // Al pegar la vuelta en 1 minuto, vuelvo a resetear el contador
+        if (segundosPasados == 59)
+            contador = 0;
+
+        // Si pasó un ciclo, aumento la velocidad
+        if ( segundosPasados == periodoIncremento * contador) 
         {
+            Debug.Log("[GameManager] Aumentando velocidad luedo de pasados: " + segundosPasados + " segundos.");
+
             contador++;
 
             speedY += incrementoVelocidad;

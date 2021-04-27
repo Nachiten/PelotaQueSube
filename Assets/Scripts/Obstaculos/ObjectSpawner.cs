@@ -120,7 +120,7 @@ public class ObjectSpawner : MonoBehaviour
     {
         lock (lockListas) 
         {
-            Debug.Log("[Object Spawner] Intentando instanciar objeto...");
+            //Debug.Log("[Object Spawner] Intentando instanciar objeto...");
 
             if (obstaculosOcultos.Count == 0)
             {
@@ -133,7 +133,7 @@ public class ObjectSpawner : MonoBehaviour
             // Recupero objeto
             GameObject objetoInstanciado = obstaculosOcultos[indexRandom];
 
-            Debug.Log("[Object Spawner] Objeto instanciado: " + gameObject.name + " | ID: " + gameObject.GetInstanceID());
+            //Debug.Log("[Object Spawner] Objeto instanciado: " + gameObject.name + " | ID: " + gameObject.GetInstanceID());
 
             objetoInstanciado.SetActive(true);
 
@@ -160,5 +160,11 @@ public class ObjectSpawner : MonoBehaviour
             // Agrego a lista ocultos
             obstaculosOcultos.Add(unObstaculo);
         }   
+    }
+
+    public Color obtenerColorRandom() {
+        int numeroRandom = Random.Range(0, coloresPosibles.Length);
+
+        return coloresPosibles[numeroRandom];
     }
 }

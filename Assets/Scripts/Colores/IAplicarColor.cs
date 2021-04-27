@@ -5,4 +5,6 @@ using UnityEngine;
 public interface IAplicarColor
 {
     public void aplicarColor(Color unColor);
+
+    public void aplicarColorRandom();
 }

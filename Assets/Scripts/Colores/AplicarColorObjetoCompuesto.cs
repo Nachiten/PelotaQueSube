@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class AplicarColorObjetoCompuesto : MonoBehaviour, IAplicarColor
 {
-    public void aplicarColor(Color unColor) 
+    public void aplicarColor(Color unColor)
     {
         Transform[] hijosMios = gameObject.GetComponentsInChildren<Transform>();
-
-        //Debug.Log("Cantidad de hijos de: " + gameObject.name + ". Hijos: " + hijosMios.Length);
 
         foreach (Transform unTransfromHijo in hijosMios)
         {
@@ -18,6 +16,13 @@ public class AplicarColorObjetoCompuesto : MonoBehaviour, IAplicarColor
                 unRenderer.color = unColor;
         }
 
-        Debug.Log("Aplicando color a objeto compuesto: " + gameObject.name);
+        //Debug.Log("Aplicando color a objeto compuesto: " + gameObject.name);
+    }
+
+    public void aplicarColorRandom() 
+    {
+        Color colorRandom = GameObject.Find("ObjectSpawner").GetComponent<ObjectSpawner>().obtenerColorRandom();
+
+        aplicarColor(colorRandom);
     }
 }

@@ -8,6 +8,13 @@ public class AplicarColorObjetoSimple : MonoBehaviour, IAplicarColor
     {
         gameObject.GetComponent<SpriteRenderer>().color = unColor;
 
-        Debug.Log("Aplicando color a objeto simple: " + gameObject.name);
+        //Debug.Log("Aplicando color a objeto simple: " + gameObject.name);
+    }
+
+    public void aplicarColorRandom()
+    {
+        Color colorRandom = GameObject.Find("ObjectSpawner").GetComponent<ObjectSpawner>().obtenerColorRandom();
+
+        aplicarColor(colorRandom);
     }
 }
