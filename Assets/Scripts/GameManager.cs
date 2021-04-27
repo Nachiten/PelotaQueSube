@@ -7,11 +7,9 @@ public class GameManager : MonoBehaviour
 {
     public bool perdio = false;
 
-    List<GameObject> obstaculos;
-
     float timePassed = 0f;
         
-    public float speedY = 5f;
+    public float speedY = 25f;
 
     int contador = 1;
 
@@ -19,8 +17,6 @@ public class GameManager : MonoBehaviour
 
     void Start() 
     {
-        obstaculos = new List<GameObject>();
-
         textoSpeed.text = speedY.ToString();
     }
 
@@ -51,18 +47,8 @@ public class GameManager : MonoBehaviour
             GameObject.Find("Fondo").GetComponent<MovimientoVertical>().fijarVelocidadA(speedY);
 
             GameObject.Find("ObjectSpawner").GetComponent<ObjectSpawner>().fijarVelocidadA(speedY);
-
-            // Aumento la velocidad de todos los obstaculos
-            foreach (GameObject unObstaculo in obstaculos)
-            {
-                unObstaculo.GetComponent<MovimientoVertical>().fijarVelocidadA(speedY);
-            }
         }
     }
-
-    public void agregarObstaculo(GameObject unObstaculo) { obstaculos.Add(unObstaculo); }
-
-    public void quitarObstaculo(GameObject unObstaculo) { obstaculos.Remove(unObstaculo); }
 
     public void perderJuego() 
     {
@@ -73,24 +59,6 @@ public class GameManager : MonoBehaviour
 
         // Decirle al object spawner q perdiste
         GameObject.Find("ObjectSpawner").GetComponent<ObjectSpawner>().perderJuego();
-
-        // Recorro todos los obstaculos para decirles q perdi
-        foreach (GameObject unObstaculo in obstaculos)
-        {
-            unObstaculo.GetComponent<MovimientoVertical>().perderJuego();
-            unObstaculo.GetComponent<MovimientoHorizontalObstaculo>().perderJuego();
-
-            RotacionObstaculo rotacion;
-
-            if (( rotacion = unObstaculo.GetComponent<RotacionObstaculo>() ) != null) 
-                rotacion.perderJuego();
-            
-            TamañoObstaculo tamaño;
-
-            if ((tamaño = unObstaculo.GetComponent<TamañoObstaculo>()) != null)
-                tamaño.perderJuego();
-            
-        }
     }
 
     public void recargarJuego() 

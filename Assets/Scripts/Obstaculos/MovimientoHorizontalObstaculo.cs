@@ -8,11 +8,13 @@ public class MovimientoHorizontalObstaculo : MonoBehaviour
 
     bool perdio = false;
 
-    void Start()
+    void OnEnable()
     {
+        //Debug.Log("OnEnable (movimientoHorizontal): " + gameObject.name);
+
         float posicionX = Random.Range(-posicionLimite, posicionLimite);
 
-        transform.position = new Vector2(posicionX, transform.position.y);
+        transform.position = new Vector2(posicionX, 10);
     }
 
     void Update()
