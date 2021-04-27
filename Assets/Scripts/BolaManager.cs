@@ -19,7 +19,7 @@ public class BolaManager : MonoBehaviour
         if (!colisionEnabled)
             return;
 
-        Debug.Log("[ColisionBola] Objeto colisionado: " + collision.gameObject.name);
+        Debug.Log("[BolaManager] Objeto colisionado: " + collision.gameObject.name);
 
         if (collision.gameObject.tag == "Obstaculo")
             perdioJuego();
@@ -28,7 +28,7 @@ public class BolaManager : MonoBehaviour
     void Start()
     {
         if (!colisionEnabled)
-            Debug.LogError("Colisiones Desactivadas!!!");
+            Debug.LogError("[BolaManager] Colisiones Desactivadas!!!");
     }
 
     void Update()

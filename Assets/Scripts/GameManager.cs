@@ -9,7 +9,11 @@ public class GameManager : MonoBehaviour
 
     List<GameObject> obstaculos;
 
-    float timePassed = 0, velocidad = 5;
+    float timePassed = 0f;
+        
+    public float speedY = 5f;
+
+    int contador = 1;
 
     public TMP_Text textoReloj, textoSpeed;
 
@@ -17,31 +21,15 @@ public class GameManager : MonoBehaviour
     {
         obstaculos = new List<GameObject>();
 
-        GameObject miObstaculo;
-        int i = 0;
-
-        // Encuentro todos los obstaculos y los agrego a la lista
-        while ( ( miObstaculo = GameObject.Find("Obstaculo " + i) ) != null) 
-        {
-            miObstaculo.GetComponent<MovimientoVertical>().sumaAlResetear = 60f;
-            obstaculos.Add(miObstaculo);
-            i++;
-        }
-
-        textoSpeed.text = velocidad.ToString();
+        textoSpeed.text = speedY.ToString();
     }
 
-    int contador = 1;
-
-    private void Update()
+    void Update()
     {
         if (perdio)
             return;
 
         timePassed += Time.deltaTime;
-
-        //float seconds = Mathf.Floor(timePassed % 60);
-        //Debug.Log("Tiempo: " + seconds.ToString("F2"));
 
         string minutes = Mathf.Floor((timePassed % 3600) / 60).ToString("00");
         string seconds = Mathf.Floor(timePassed % 60).ToString("00");
@@ -56,19 +44,25 @@ public class GameManager : MonoBehaviour
         {
             contador++;
 
+            speedY += incrementoVelocidad;
+            textoSpeed.text = speedY.ToString();
+
             // Aumento la velocidad del fondo
-            GameObject.Find("Fondo").GetComponent<MovimientoVertical>().aumentarVelocidad(incrementoVelocidad);
+            GameObject.Find("Fondo").GetComponent<MovimientoVertical>().fijarVelocidadA(speedY);
+
+            GameObject.Find("ObjectSpawner").GetComponent<ObjectSpawner>().fijarVelocidadA(speedY);
 
             // Aumento la velocidad de todos los obstaculos
             foreach (GameObject unObstaculo in obstaculos)
             {
-                unObstaculo.GetComponent<MovimientoVertical>().aumentarVelocidad(incrementoVelocidad);
+                unObstaculo.GetComponent<MovimientoVertical>().fijarVelocidadA(speedY);
             }
-
-            velocidad += incrementoVelocidad;
-            textoSpeed.text = velocidad.ToString();
         }
     }
+
+    public void agregarObstaculo(GameObject unObstaculo) { obstaculos.Add(unObstaculo); }
+
+    public void quitarObstaculo(GameObject unObstaculo) { obstaculos.Remove(unObstaculo); }
 
     public void perderJuego() 
     {
@@ -76,6 +70,9 @@ public class GameManager : MonoBehaviour
 
         // Decirle al fondo que perdiste
         GameObject.Find("Fondo").GetComponent<MovimientoVertical>().perderJuego();
+
+        // Decirle al object spawner q perdiste
+        GameObject.Find("ObjectSpawner").GetComponent<ObjectSpawner>().perderJuego();
 
         // Recorro todos los obstaculos para decirles q perdi
         foreach (GameObject unObstaculo in obstaculos)
@@ -85,16 +82,14 @@ public class GameManager : MonoBehaviour
 
             RotacionObstaculo rotacion;
 
-            if (( rotacion = unObstaculo.GetComponent<RotacionObstaculo>() ) != null) {
+            if (( rotacion = unObstaculo.GetComponent<RotacionObstaculo>() ) != null) 
                 rotacion.perderJuego();
-            }
-
+            
             TamañoObstaculo tamaño;
 
             if ((tamaño = unObstaculo.GetComponent<TamañoObstaculo>()) != null)
-            {
                 tamaño.perderJuego();
-            }
+            
         }
     }
 

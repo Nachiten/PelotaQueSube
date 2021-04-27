@@ -6,25 +6,20 @@ public class MovimientoVertical : MonoBehaviour
     float speedY = 5f;
 
     bool perdio = false;
-    Vector2 posicionInicial;
 
-    public float limiteMinimo = -34f;
-    public float sumaAlResetear = 34f;
+    public bool reseteaPosicion = false;
 
-    public void perderJuego()
-    {
-        perdio = true;
+    public float limiteMinimo = -34f, sumaAlResetear = 34f;
 
-        // Elimino gravedad para parar de que siga cayendo
-        this.GetComponent<Rigidbody2D>().gravityScale = 0;
-        this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-    }
+    GameManager codigoGameManager;
 
     void Start()
     {
-        posicionInicial = transform.position;
+        codigoGameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         this.GetComponent<Rigidbody2D>().gravityScale = 0;
+
+        speedY = codigoGameManager.speedY;
     }
 
     void Update()
@@ -34,24 +29,33 @@ public class MovimientoVertical : MonoBehaviour
 
         Vector2 posicionActual = transform.position;
 
-        // Frenar si estoy abajo de todo
-        if (posicionActual.y >= posicionInicial.y)
-            transform.position = new Vector2(posicionActual.x, posicionInicial.y);
-
         // Resetear posicion al pasar cierto limite
-        if (posicionActual.y <= limiteMinimo) 
-        {
+        if (posicionActual.y <= limiteMinimo && reseteaPosicion) 
             transform.position = new Vector2(posicionActual.x, posicionActual.y + sumaAlResetear);
-            posicionInicial = transform.position;
-        }
-
+        
         // Configurar Velocidad
-        this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -speedY);
+        GetComponent<Rigidbody2D>().velocity = new Vector2(0, -speedY);
 
+        if (transform.position.y <= -20f && !reseteaPosicion) 
+        {
+            codigoGameManager.quitarObstaculo(gameObject);
+            Destroy(gameObject);
+        }
     }
 
-    public void aumentarVelocidad(float incremento) 
+    public void perderJuego()
     {
-        speedY += incremento;
+        perdio = true;
+
+        // Elimino gravedad para parar de que siga cayendo
+        GetComponent<Rigidbody2D>().gravityScale = 0;
+        GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+    }
+
+    public void fijarVelocidadA(float velocidad)
+    {
+        speedY = velocidad;
+
+        //Debug.Log("[MovimientoVertical] Velocidad Actual: " + speedY);
     }
 }
