@@ -412,7 +412,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5e99acbd7abc08345b232839c3f4accb, type: 3}
   - {fileID: 21300000, guid: d1ef06486a77595479f74dae4f00ef39, type: 3}
   - {fileID: 21300000, guid: 1cd4dc589f3c3144a8b865a64ff90bb8, type: 3}
-  imagenElegida: 3
+  - {fileID: 21300000, guid: caf9ea8fd0f85d94b97605e3b07b4151, type: 3}
+  imagenElegida: 4
 --- !u!50 &96141594
 Rigidbody2D:
   serializedVersion: 4
@@ -1983,6 +1984,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3875825583809692436, guid: ca9849e00d6f18b48846cff2b9f7a3d5,
+        type: 3}
+      propertyPath: colisionEnabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3875825583809692439, guid: ca9849e00d6f18b48846cff2b9f7a3d5,
         type: 3}
       propertyPath: m_RootOrder
