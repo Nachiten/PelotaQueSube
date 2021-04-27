@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 6064665249984871212}
   - component: {fileID: 3192135141956992538}
   - component: {fileID: 5724678274670631326}
+  - component: {fileID: -8773055447211674067}
   m_Layer: 0
-  m_Name: Obstaculo
+  m_Name: ObstaculoRectangulo
   m_TagString: Obstaculo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -146,7 +147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fbf94e8b98aff649916dc60ffd5d88c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  perdio: 0
 --- !u!114 &5724678274670631326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,5 +159,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d44c0e0ab312df49b560de465bb5072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reseteaPosicion: 0
   limiteMinimo: -10
   sumaAlResetear: 20
+--- !u!114 &-8773055447211674067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3192135141956992539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e943becb3990a8f4088972d2247208c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

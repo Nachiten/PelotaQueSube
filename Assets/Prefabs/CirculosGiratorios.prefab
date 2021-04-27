@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: 1929277709265181239}
   - component: {fileID: 8323580072535894586}
   - component: {fileID: 1105672487086451985}
+  - component: {fileID: 7800475172308037065}
   m_Layer: 0
   m_Name: CirculosGiratorios
   m_TagString: Untagged
@@ -182,6 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d44c0e0ab312df49b560de465bb5072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reseteaPosicion: 0
   limiteMinimo: -10
   sumaAlResetear: 20
 --- !u!114 &1105672487086451985
@@ -194,6 +196,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f1e85bb92f9a084da89c990ec44af8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7800475172308037065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4654607488846574269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 351af924b2f982d4484c598af9292942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6460998840515479732

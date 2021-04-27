@@ -10,11 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 3373228787653041527}
   - component: {fileID: 3373228787653041526}
-  - component: {fileID: 3373228787653041512}
-  - component: {fileID: 3373228787653041525}
   - component: {fileID: 3373228787653041524}
   - component: {fileID: 3373228787653041513}
+  - component: {fileID: 3373228787653041512}
+  - component: {fileID: 3373228787653041525}
   - component: {fileID: -7264058537381930645}
+  - component: {fileID: -3788142257964751956}
   m_Layer: 0
   m_Name: Rombo
   m_TagString: Obstaculo
@@ -88,32 +89,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3373228787653041512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3373228787653041523}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fbf94e8b98aff649916dc60ffd5d88c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3373228787653041525
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3373228787653041523}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d44c0e0ab312df49b560de465bb5072, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  limiteMinimo: -10
-  sumaAlResetear: 20
 --- !u!60 &3373228787653041524
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -169,6 +144,33 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &3373228787653041512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3373228787653041523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fbf94e8b98aff649916dc60ffd5d88c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3373228787653041525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3373228787653041523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d44c0e0ab312df49b560de465bb5072, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reseteaPosicion: 0
+  limiteMinimo: -10
+  sumaAlResetear: 20
 --- !u!114 &-7264058537381930645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,5 +181,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f85e0a5f10e7f1c449250c50f203ea47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-3788142257964751956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3373228787653041523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e943becb3990a8f4088972d2247208c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

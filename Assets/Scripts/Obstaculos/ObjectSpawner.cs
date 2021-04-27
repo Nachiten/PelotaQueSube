@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class ObjectSpawner : MonoBehaviour
 {
     public GameObject[] obstaculosPrefabs;
+    public Color[] coloresPosibles;
 
     List<GameObject> obstaculosSpawneados;
     List<GameObject> obstaculosOcultos;
@@ -42,7 +43,12 @@ public class ObjectSpawner : MonoBehaviour
                 obstaculoInstancia.GetComponent<MovimientoVertical>().fijarVelocidadA(speedY);
                 obstaculoInstancia.transform.parent = obstaculoParent.transform;
 
-                obstaculoInstancia.name = obstaculoInstancia.name.Substring(0, obstaculoInstancia.name.Length - 7) + " " +  i;
+                int indexColorRandom = Random.Range(0, coloresPosibles.Length);
+                string nombrePrefab = obstaculoInstancia.name.Substring(0, obstaculoInstancia.name.Length - 7);
+
+                obstaculoInstancia.GetComponent<IAplicarColor>().aplicarColor(coloresPosibles[indexColorRandom]);
+
+                obstaculoInstancia.name = nombrePrefab + " " +  i;
 
                 obstaculosOcultos.Add(obstaculoInstancia);
             }
