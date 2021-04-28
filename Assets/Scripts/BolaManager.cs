@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class BolaManager : MonoBehaviour
 {
+    public bool started = false;
+
     public bool colisionEnabled = true;
 
     bool perdio = false;
@@ -16,7 +18,7 @@ public class BolaManager : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!colisionEnabled)
+        if (!colisionEnabled || !started)
             return;
 
         Debug.Log("[BolaManager] Objeto colisionado: " + collision.gameObject.name);
@@ -33,7 +35,7 @@ public class BolaManager : MonoBehaviour
 
     void Update()
     {
-        if (perdio)
+        if (perdio || !started)
             return;
         
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);

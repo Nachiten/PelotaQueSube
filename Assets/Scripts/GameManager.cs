@@ -5,6 +5,8 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    public bool started = false;
+
     public bool perdio = false;
 
     public float speedY = 25f;
@@ -15,6 +17,8 @@ public class GameManager : MonoBehaviour
 
     int contador = 1;
 
+    public GameObject panelComienzo;
+
     void Start() 
     {
         textoSpeed.text = speedY.ToString();
@@ -22,6 +26,12 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (!started) 
+        {
+            procesarInicio();
+            return;
+        }
+            
         if (perdio)
             return;
 
@@ -56,6 +66,18 @@ public class GameManager : MonoBehaviour
             GameObject.Find("Fondo").GetComponent<MovimientoVertical>().fijarVelocidadA(speedY);
 
             GameObject.Find("ObjectSpawner").GetComponent<ObjectSpawner>().fijarVelocidadA(speedY);
+        }
+    }
+
+    void procesarInicio() {
+        if (Input.GetMouseButton(0) || Input.GetMouseButton(1)) 
+        {
+            started = true;
+            panelComienzo.SetActive(false);
+
+            MovimientoVertical.started = true;
+            GameObject.Find("Bola").GetComponent<BolaManager>().started = true;
+            GameObject.Find("ObjectSpawner").GetComponent<ObjectSpawner>().started = true;
         }
     }
 

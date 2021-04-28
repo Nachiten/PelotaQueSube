@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 public class ObjectSpawner : MonoBehaviour
 {
+    public bool started = false;
+
     public GameObject[] obstaculosPrefabs;
     public Color[] coloresPosibles;
 
@@ -58,7 +60,7 @@ public class ObjectSpawner : MonoBehaviour
 
     void Update()
     {
-        if (perdio)
+        if (perdio || !started)
             return;
 
         Vector2 posicionActual = transform.position;

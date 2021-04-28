@@ -3,6 +3,8 @@ using TMPro;
 
 public class MovimientoVertical : MonoBehaviour
 {
+    public static bool started = false;
+
     float speedY = 5f;
 
     bool perdio = false;
@@ -20,11 +22,13 @@ public class MovimientoVertical : MonoBehaviour
         GetComponent<Rigidbody2D>().gravityScale = 0;
 
         codigoGameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        started = false;
     }
 
     void Update()
     {
-        if (perdio)
+        if (perdio || !started)
             return;
 
         Vector2 posicionActual = transform.position;
@@ -45,14 +49,14 @@ public class MovimientoVertical : MonoBehaviour
 
     void OnEnable()
     {
-        //Debug.Log("OnEnable: " + gameObject.name + " | ID: " + gameObject.GetInstanceID());
-
-        speedY = codigoGameManager.speedY;
+        if (gameObject.name == "Fondo")
+            speedY = 1.5f;
+        else
+            speedY = codigoGameManager.speedY;
     }
 
     void OnDisable()
     {
-        //Debug.Log("OnDisable: " + gameObject.name + " | ID: " + gameObject.GetInstanceID());
         pararObjeto();
     }
 
@@ -70,6 +74,7 @@ public class MovimientoVertical : MonoBehaviour
 
     public void fijarVelocidadA(float velocidad)
     {
-        speedY = velocidad;
+        if (gameObject.name != "Fondo")
+            speedY = velocidad;
     }
 }
