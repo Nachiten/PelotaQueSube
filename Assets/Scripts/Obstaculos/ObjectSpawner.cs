@@ -5,6 +5,8 @@ public class ObjectSpawner : MonoBehaviour
 {
     public bool started = false;
 
+    int copiasPrefabs = 3;
+
     public GameObject[] obstaculosPrefabs;
     public Color[] coloresPosibles;
 
@@ -17,12 +19,8 @@ public class ObjectSpawner : MonoBehaviour
      * 3 - Al quitar un objeto se quita de obstaculosSpawneados y se pone en obstaculosOcultos.
      */
 
-    float limiteMinimo = -10f, sumaAlResetear = 20f;
-
-    float speedY = 5f;
+    float limiteMinimo = -10f, sumaAlResetear = 20f, speedY = 5f;
     bool perdio = false;
-
-    int copiasPrefabs = 3;
 
     private readonly object lockListas = new object();
 
@@ -42,7 +40,7 @@ public class ObjectSpawner : MonoBehaviour
                 GameObject obstaculoInstancia = Instantiate(unObjeto, new Vector3(0, 10, 0), Quaternion.identity);
 
                 obstaculoInstancia.SetActive(false);
-                obstaculoInstancia.GetComponent<MovimientoVertical>().fijarVelocidadA(speedY);
+                obstaculoInstancia.GetComponent<MovimientoVerticalObstaculo>().fijarVelocidadA(speedY);
                 obstaculoInstancia.transform.parent = obstaculoParent.transform;
 
                 int indexColorRandom = Random.Range(0, coloresPosibles.Length);
@@ -74,7 +72,7 @@ public class ObjectSpawner : MonoBehaviour
         }
 
         // Configurar Velocidad
-        this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -speedY);
+        GetComponent<Rigidbody2D>().velocity = new Vector2(0, -speedY);
     }
 
     public void perderJuego()
@@ -88,7 +86,7 @@ public class ObjectSpawner : MonoBehaviour
         // Recorro todos los obstaculos para decirles q perdi
         foreach (GameObject unObstaculo in obstaculosSpawneados)
         {
-            unObstaculo.GetComponent<MovimientoVertical>().perderJuego();
+            unObstaculo.GetComponent<MovimientoVerticalObstaculo>().perderJuego();
             unObstaculo.GetComponent<MovimientoHorizontalObstaculo>().perderJuego();
 
             RotacionObstaculo rotacion;
@@ -113,7 +111,7 @@ public class ObjectSpawner : MonoBehaviour
             // Aumento la velocidad de todos los obstaculos
             foreach (GameObject unObstaculo in obstaculosSpawneados)
             {
-                unObstaculo.GetComponent<MovimientoVertical>().fijarVelocidadA(speedY);
+                unObstaculo.GetComponent<MovimientoVerticalObstaculo>().fijarVelocidadA(speedY);
             }
         }
     }

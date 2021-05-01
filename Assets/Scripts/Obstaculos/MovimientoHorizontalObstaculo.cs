@@ -14,6 +14,7 @@ public class MovimientoHorizontalObstaculo : MonoBehaviour
 
         float posicionX = Random.Range(-posicionLimite, posicionLimite);
 
+        // Fijo posicion Y correcta, posicion X random
         transform.position = new Vector2(posicionX, 10);
     }
 

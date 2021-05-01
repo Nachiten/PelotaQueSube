@@ -1,17 +1,12 @@
 using UnityEngine;
-using TMPro;
 
-public class MovimientoVertical : MonoBehaviour
+public class MovimientoVerticalObstaculo : MonoBehaviour
 {
     public static bool started = false;
 
     float speedY = 5f;
 
     bool perdio = false;
-
-    public bool reseteaPosicion = false;
-
-    public float limiteMinimo = -34f, sumaAlResetear = 34f;
 
     GameManager codigoGameManager;
 
@@ -31,16 +26,11 @@ public class MovimientoVertical : MonoBehaviour
         if (perdio || !started)
             return;
 
-        Vector2 posicionActual = transform.position;
-
-        // Resetear posicion al pasar cierto limite
-        if (posicionActual.y <= limiteMinimo && reseteaPosicion)
-            transform.position = new Vector2(posicionActual.x, posicionActual.y + sumaAlResetear);
-
         // Configurar Velocidad
         GetComponent<Rigidbody2D>().velocity = new Vector2(0, -speedY);
 
-        if (transform.position.y <= limiteDesaparicion && !reseteaPosicion) 
+        // Desaparecer despues de cierto limite
+        if (transform.position.y <= limiteDesaparicion) 
         {
             GameObject.Find("ObjectSpawner").GetComponent<ObjectSpawner>().ocultarObstaculo(this.gameObject);
             GetComponent<IAplicarColor>().aplicarColorRandom();
@@ -49,10 +39,7 @@ public class MovimientoVertical : MonoBehaviour
 
     void OnEnable()
     {
-        if (gameObject.name == "Fondo")
-            speedY = 1.5f;
-        else
-            speedY = codigoGameManager.speedY;
+        speedY = codigoGameManager.speedY;
     }
 
     void OnDisable()
@@ -74,7 +61,6 @@ public class MovimientoVertical : MonoBehaviour
 
     public void fijarVelocidadA(float velocidad)
     {
-        if (gameObject.name != "Fondo")
-            speedY = velocidad;
+        speedY = velocidad;
     }
 }

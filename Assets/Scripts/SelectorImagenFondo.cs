@@ -13,8 +13,8 @@ public class SelectorImagenFondo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach (SpriteRenderer unRenderer in spritesFondos) {
+        foreach (SpriteRenderer unRenderer in spritesFondos) 
             unRenderer.sprite = imagenesPosibles[imagenElegida];
-        }
+        
     }
 }

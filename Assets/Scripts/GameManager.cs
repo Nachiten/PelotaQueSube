@@ -5,19 +5,17 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public bool started = false;
-
-    public bool perdio = false;
+    public bool started = false, perdio = false;
 
     public float speedY = 25f;
-
-    public TMP_Text textoReloj, textoSpeed;
 
     float timePassed = 0f, timeSpeed = 1;
 
     int contador = 1;
 
     public GameObject panelComienzo;
+
+    public TMP_Text textoReloj, textoSpeed;
 
     void Start() 
     {
@@ -35,6 +33,11 @@ public class GameManager : MonoBehaviour
         if (perdio)
             return;
 
+        procesarReloj();   
+    }
+
+    void procesarReloj() 
+    {
         timePassed += Time.deltaTime * timeSpeed;
 
         string minutes = Mathf.Floor((timePassed % 3600) / 60).ToString("00");
@@ -53,31 +56,32 @@ public class GameManager : MonoBehaviour
             contador = 0;
 
         // Si pasó un ciclo, aumento la velocidad
-        if ( segundosPasados == periodoIncremento * contador) 
+        if (segundosPasados == periodoIncremento * contador)
         {
             Debug.Log("[GameManager] Aumentando velocidad luedo de pasados: " + segundosPasados + " segundos.");
 
             contador++;
 
+            // Mostrar aumento de velocidad en pantalla
             speedY += incrementoVelocidad;
             textoSpeed.text = speedY.ToString();
 
-            // Aumento la velocidad del fondo
-            GameObject.Find("Fondo").GetComponent<MovimientoVertical>().fijarVelocidadA(speedY);
-
+            // Decir a object spawner que aumente velocidad
             GameObject.Find("ObjectSpawner").GetComponent<ObjectSpawner>().fijarVelocidadA(speedY);
         }
     }
 
-    void procesarInicio() {
+    void procesarInicio() 
+    {
         if (Input.GetMouseButton(0) || Input.GetMouseButton(1)) 
         {
             started = true;
             panelComienzo.SetActive(false);
 
-            MovimientoVertical.started = true;
+            MovimientoVerticalObstaculo.started = true;
             GameObject.Find("Bola").GetComponent<BolaManager>().started = true;
             GameObject.Find("ObjectSpawner").GetComponent<ObjectSpawner>().started = true;
+            GameObject.Find("Fondo").GetComponent<MovimientoFondo>().started = true;
         }
     }
 
@@ -86,9 +90,9 @@ public class GameManager : MonoBehaviour
         perdio = true;
 
         // Decirle al fondo que perdiste
-        GameObject.Find("Fondo").GetComponent<MovimientoVertical>().perderJuego();
+        GameObject.Find("Fondo").GetComponent<MovimientoFondo>().perderJuego();
 
-        // Decirle al object spawner q perdiste
+        // Decirle al object spawner que perdiste
         GameObject.Find("ObjectSpawner").GetComponent<ObjectSpawner>().perderJuego();
     }
 

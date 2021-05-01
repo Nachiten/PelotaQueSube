@@ -4,21 +4,17 @@ public class MovimientoCamara : MonoBehaviour
 {
     public GameObject bola;
 
-    float yMaxBola = 0;
+    float offsetYCamara = 2.6f;
 
     void Update()
     {
         if (!FindObjectOfType<GameManager>().perdio) 
         {
-            Vector3 posicion = gameObject.GetComponent<Transform>().position;
+            Vector3 posicionCamara = transform.position;
 
             float posicionYBola = bola.GetComponent<Transform>().position.y;
 
-            if (posicionYBola > yMaxBola)
-            {
-                yMaxBola = posicionYBola;
-                this.gameObject.GetComponent<Transform>().position = new Vector3(posicion.x, yMaxBola, posicion.z);
-            }
+            gameObject.GetComponent<Transform>().position = new Vector3(posicionCamara.x, posicionYBola + offsetYCamara, posicionCamara.z);
         }
     }
 }
