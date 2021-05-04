@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
         // Si pasó un ciclo, aumento la velocidad
         if (segundosPasados == periodoIncremento * contador)
         {
-            Debug.Log("[GameManager] Aumentando velocidad luedo de pasados: " + segundosPasados + " segundos.");
+            //Debug.Log("[GameManager] Aumentando velocidad luego de pasados: " + segundosPasados + " segundos.");
 
             contador++;
 
